@@ -1,6 +1,0 @@
-[jobs.pascal_lex]
-
-image = { source = "dockerfile", path = ".", file = "./Dockerfile"}
-run = [
-  "java com.dbettkk.Test $input",
-]

@@ -1,0 +1,6 @@
+[jobs.pascal_lex]
+
+image = { source = "dockerfile", path = ".", file = "./Dockerfile", tag = "test"}
+run = [
+  "java com.dbettkk.Test $input",
+]
