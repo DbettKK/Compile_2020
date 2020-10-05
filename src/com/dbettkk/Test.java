@@ -48,7 +48,7 @@ public class Test {
                 System.out.println("For");
                 break;
             case "IF":
-                System.out.println("if");
+                System.out.println("If");
                 break;
             case "THEN":
                 System.out.println("Then");
@@ -155,7 +155,7 @@ public class Test {
                         System.out.println("For");
                         break;
                     case "IF":
-                        System.out.println("if");
+                        System.out.println("If");
                         break;
                     case "THEN":
                         System.out.println("Then");
