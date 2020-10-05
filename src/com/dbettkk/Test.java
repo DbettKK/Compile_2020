@@ -85,40 +85,6 @@ public class Test {
         }
     }
     public static void checkSecond(String s){
-        try {
-            // 首先判断是不是数字
-            int num = Integer.parseInt(s);
-            System.out.println("Int(" + num + ")");
-        } catch (Exception e){
-
-            for (int i = 0; i < s.length(); i++){
-                char tmp = s.charAt(i);
-                if (!l1.contains(tmp)){
-                    System.out.println("Unknown");
-                    System.exit(0);
-                }
-            }
-            if (s.charAt(0) >= '0' && s.charAt(0) <= '9'){
-                String left = s;
-                StringBuffer sb = new StringBuffer();
-                for (int i = 0; i < s.length(); i++){
-                    char tmp = s.charAt(i);
-                    if(tmp >= '0' && tmp <= '9'){
-                        sb.append(tmp);
-                    }
-                    else{
-                        System.out.println("Int(" + Integer.parseInt(sb.toString()) + ")");
-                        left = s.substring(i);
-                        break;
-                    }
-                }
-                checkFirst(left);
-            } else {
-                System.out.println("Ident(" + s + ")");
-            }
-        }
-    }
-    public static void checkThird(String s){
         int cnt = 0;
         while (true) {
             char tmp = s.charAt(cnt);
