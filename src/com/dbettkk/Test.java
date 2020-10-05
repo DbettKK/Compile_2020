@@ -110,7 +110,7 @@ public class Test {
         String str;
         init();
         while ((str = in.readLine()) != null) {
-            String[] strs = str.split("\\s");
+            String[] strs = str.split("\\s+");
             for (String s : strs) {
                 checkFirst(s);
             }
