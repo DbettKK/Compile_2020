@@ -37,6 +37,9 @@ public class Test {
         return c >= 'A' && c <= 'Z';
     }
     public static void checkFirst(String s){
+        if (s == null || s.equals("")){
+            return;
+        }
         switch (s){
             case "BEGIN":
                 System.out.println("Begin");
@@ -192,6 +195,9 @@ public class Test {
                 case ')':
                     System.out.println("RParenthesis");
                     break;
+                case '=':
+                    System.out.println("Unknown");
+                    System.exit(0);
                 default:
                     cnt--;
             }
