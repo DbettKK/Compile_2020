@@ -82,6 +82,17 @@ public class Test {
                         sb.append(tmp);
                     }
                     else{
+                        while (true){
+                            if (sb.toString().equals("0")){
+                                break;
+                            }
+                            if(sb.charAt(0) == '0'){
+                                sb.deleteCharAt(0);
+                            }
+                            else {
+                                break;
+                            }
+                        }
                         System.out.println("Int(" + sb + ")");
                         left = s.substring(i);
                         // System.out.println(left);
