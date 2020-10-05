@@ -81,7 +81,7 @@ public class Test {
                 System.out.println("Assign");
                 break;
             default:
-                checkThird(s);
+                checkSecond(s);
         }
     }
     public static void checkSecond(String s){
