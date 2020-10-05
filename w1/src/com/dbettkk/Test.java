@@ -37,9 +37,6 @@ public class Test {
         return c >= 'A' && c <= 'Z';
     }
     public static void checkFirst(String s){
-        if (s == null || s.equals("")){
-            return;
-        }
         switch (s){
             case "BEGIN":
                 System.out.println("Begin");
@@ -85,35 +82,36 @@ public class Test {
         }
     }
     public static void checkSecond(String s){
+        if (s == null || s.equals("")) return;
         int cnt = 0;
-        while (true) {
+        do {
             char tmp = s.charAt(cnt);
-            if(!l2.contains(tmp)){
+            if (!l2.contains(tmp)) {
                 System.out.println("Unknown");
                 System.exit(0);
             }
-            if (isNumber(tmp)){
+            if (isNumber(tmp)) {
                 StringBuilder sb = new StringBuilder();
                 do {
                     sb.append(s.charAt(cnt));
                     cnt++;
-                }while(s.length()>cnt&&isNumber(s.charAt(cnt)));
-                if (s.length() > cnt){
+                } while (s.length() > cnt && isNumber(s.charAt(cnt)));
+                if (s.length() > cnt) {
                     tmp = s.charAt(cnt);
                 }
                 System.out.println("Int(" + Integer.parseInt(sb.toString()) + ")");
 
             }
-            if (isAlpha(tmp)){
+            if (isAlpha(tmp)) {
                 StringBuilder sb = new StringBuilder();
                 do {
                     sb.append(s.charAt(cnt));
                     cnt++;
-                }while(s.length()>cnt&&l1.contains(s.charAt(cnt)));
-                if (s.length() > cnt){
+                } while (s.length() > cnt && l1.contains(s.charAt(cnt)));
+                if (s.length() > cnt) {
                     tmp = s.charAt(cnt);
                 }
-                switch (sb.toString()){
+                switch (sb.toString()) {
                     case "BEGIN":
                         System.out.println("Begin");
                         break;
@@ -137,13 +135,12 @@ public class Test {
                 }
             }
 
-            switch (tmp){
+            switch (tmp) {
                 case ':':
-                    if (s.length() > cnt+1 && s.charAt(cnt+1) == '='){
+                    if (s.length() > cnt + 1 && s.charAt(cnt + 1) == '=') {
                         System.out.println("Assign");
                         cnt++;
-                    }
-                    else System.out.println("Colon");
+                    } else System.out.println("Colon");
                     break;
                 case '+':
                     System.out.println("Plus");
@@ -168,10 +165,7 @@ public class Test {
                     cnt--;
             }
             cnt++;
-            if (s.length() <= cnt){
-                break;
-            }
-        }
+        } while (s.length() > cnt);
     }
     public static void main(String[] args) throws Exception {
         BufferedReader in = new BufferedReader(new FileReader(args[0]));
@@ -180,7 +174,7 @@ public class Test {
         while ((str = in.readLine()) != null) {
             String[] strs = str.split("\\s+");
             for (String s : strs) {
-                checkFirst(s);
+                checkSecond(s);
             }
         }
     }
