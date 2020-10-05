@@ -23,7 +23,7 @@ public class Test {
             }
         }
     }
-    
+
     public static void init(){
         for (int i = 0; i < 10 ; i++){
             l.add((char) ('0' + i));
@@ -38,7 +38,6 @@ public class Test {
         l.add(',');
         l.add('(');
         l.add(')');
-        l.add('=');
         m1.put("BEGIN", "Begin");
         m1.put("END", "End");
         m1.put("FOR", "For");
@@ -99,12 +98,15 @@ public class Test {
                     if (s.length() > cnt + 1 && s.charAt(cnt + 1) == '=') {
                         System.out.println("Assign");
                         cnt++;
-                    } else System.out.println(m2.get(":"));
+                    }
+                    else System.out.println(m2.get(":"));
                 }
                 else System.out.println(m2.get(tmp + ""));
+                cnt++;
+            } else {
                 cnt++;
             }
         } while (s.length() > cnt);
     }
-    
+
 }
