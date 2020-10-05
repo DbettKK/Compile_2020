@@ -83,7 +83,7 @@ public class Test {
     }
     public static void checkSecond(String s){
         try {
-            // Ê×ÏÈÅĞ¶ÏÊÇ²»ÊÇÊı×Ö
+            // é¦–å…ˆåˆ¤æ–­æ˜¯ä¸æ˜¯æ•°å­—
             int num = Integer.parseInt(s);
             System.out.println("Int(" + num + ")");
         } catch (Exception e){
