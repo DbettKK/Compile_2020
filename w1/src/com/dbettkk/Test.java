@@ -3,90 +3,70 @@ package com.dbettkk;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Test {
-    private static List<Character> l1 = new ArrayList();
-    private static List<Character> l2 = new ArrayList();
+    private static List<Character> l = new ArrayList();
+    private static Map<String, String> m1 = new HashMap<>();
+    private static Map<String, String> m2 = new HashMap<>();
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader in = new BufferedReader(new FileReader(args[0]));
+        String str;
+        init();
+        while ((str = in.readLine()) != null) {
+            String[] strs = str.split("\\s+");
+            for (String s : strs) {
+                check(s);
+            }
+        }
+    }
+    
     public static void init(){
         for (int i = 0; i < 10 ; i++){
-            l1.add((char) ('0' + i));
-            l2.add((char) ('0' + i));
+            l.add((char) ('0' + i));
         }
         for (int i = 0; i < 26 ; i++){
-            l1.add((char) ('a' + i));
-            l2.add((char) ('a' + i));
-            l1.add((char) ('A' + i));
-            l2.add((char) ('A' + i));
+            l.add((char) ('a' + i));
+            l.add((char) ('A' + i));
         }
-        l2.add(':');
-        l2.add('+');
-        l2.add('*');
-        l2.add(',');
-        l2.add('(');
-        l2.add(')');
-        l2.add('=');
+        l.add(':');
+        l.add('+');
+        l.add('*');
+        l.add(',');
+        l.add('(');
+        l.add(')');
+        l.add('=');
+        m1.put("BEGIN", "Begin");
+        m1.put("END", "End");
+        m1.put("FOR", "For");
+        m1.put("IF", "If");
+        m1.put("THEN", "Then");
+        m1.put("ELSE", "Else");
+        m2.put(":", "Colon");
+        m2.put("+", "Plus");
+        m2.put("*", "Star");
+        m2.put(",", "Comma");
+        m2.put("(", "LParenthesis");
+        m2.put(")", "RParenthesis");
+        m2.put(":=", "Assign");
     }
     public static boolean isNumber(char c){
         return c >= '0' && c <= '9';
     }
 
     public static boolean isAlpha(char c){
-        if (c >= 'a' && c <= 'z')
-            return true;
+        if (c >= 'a' && c <= 'z') return true;
         return c >= 'A' && c <= 'Z';
     }
-    public static void checkFirst(String s){
-        switch (s){
-            case "BEGIN":
-                System.out.println("Begin");
-                break;
-            case "END":
-                System.out.println("End");
-                break;
-            case "FOR":
-                System.out.println("For");
-                break;
-            case "IF":
-                System.out.println("If");
-                break;
-            case "THEN":
-                System.out.println("Then");
-                break;
-            case "ELSE":
-                System.out.println("Else");
-                break;
-            case ":":
-                System.out.println("Colon");
-                break;
-            case "+":
-                System.out.println("Plus");
-                break;
-            case "*":
-                System.out.println("Star");
-                break;
-            case ",":
-                System.out.println("Comma");
-                break;
-            case "(":
-                System.out.println("LParenthesis");
-                break;
-            case ")":
-                System.out.println("RParenthesis");
-                break;
-            case ":=":
-                System.out.println("Assign");
-                break;
-            default:
-                checkSecond(s);
-        }
-    }
-    public static void checkSecond(String s){
+    public static void check(String s){
         if (s == null || s.equals("")) return;
         int cnt = 0;
         do {
             char tmp = s.charAt(cnt);
-            if (!l2.contains(tmp)) {
+            if (!l.contains(tmp)) {
                 System.out.println("Unknown");
                 System.exit(0);
             }
@@ -100,82 +80,31 @@ public class Test {
                     tmp = s.charAt(cnt);
                 }
                 System.out.println("Int(" + Integer.parseInt(sb.toString()) + ")");
-
             }
             if (isAlpha(tmp)) {
                 StringBuilder sb = new StringBuilder();
                 do {
                     sb.append(s.charAt(cnt));
                     cnt++;
-                } while (s.length() > cnt && l1.contains(s.charAt(cnt)));
+                } while (s.length() > cnt && (isAlpha(s.charAt(cnt)) || isNumber(s.charAt(cnt))));
                 if (s.length() > cnt) {
                     tmp = s.charAt(cnt);
                 }
-                switch (sb.toString()) {
-                    case "BEGIN":
-                        System.out.println("Begin");
-                        break;
-                    case "END":
-                        System.out.println("End");
-                        break;
-                    case "FOR":
-                        System.out.println("For");
-                        break;
-                    case "IF":
-                        System.out.println("If");
-                        break;
-                    case "THEN":
-                        System.out.println("Then");
-                        break;
-                    case "ELSE":
-                        System.out.println("Else");
-                        break;
-                    default:
-                        System.out.println("Ident(" + sb + ")");
-                }
+                if (m1.containsKey(sb.toString()))
+                    System.out.println(m1.get(sb.toString()));
+                else System.out.println("Ident(" + sb + ")");
             }
-
-            switch (tmp) {
-                case ':':
+            if (m2.containsKey(tmp + "")){
+                if (tmp == ':'){
                     if (s.length() > cnt + 1 && s.charAt(cnt + 1) == '=') {
                         System.out.println("Assign");
                         cnt++;
-                    } else System.out.println("Colon");
-                    break;
-                case '+':
-                    System.out.println("Plus");
-
-                    break;
-                case '*':
-                    System.out.println("Star");
-                    break;
-                case ',':
-                    System.out.println("Comma");
-                    break;
-                case '(':
-                    System.out.println("LParenthesis");
-                    break;
-                case ')':
-                    System.out.println("RParenthesis");
-                    break;
-                case '=':
-                    System.out.println("Unknown");
-                    System.exit(0);
-                default:
-                    cnt--;
+                    } else System.out.println(m2.get(":"));
+                }
+                else System.out.println(m2.get(tmp + ""));
+                cnt++;
             }
-            cnt++;
         } while (s.length() > cnt);
     }
-    public static void main(String[] args) throws Exception {
-        BufferedReader in = new BufferedReader(new FileReader(args[0]));
-        String str;
-        init();
-        while ((str = in.readLine()) != null) {
-            String[] strs = str.split("\\s+");
-            for (String s : strs) {
-                checkSecond(s);
-            }
-        }
-    }
+    
 }
