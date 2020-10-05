@@ -70,7 +70,7 @@ public class Test {
                 char tmp = s.charAt(i);
                 if (!l.contains(tmp)){
                     System.out.println("Unknown");
-                    return;
+                    System.exit(0);
                 }
             }
             if (s.charAt(0) >= '0' && s.charAt(0) <= '9'){
