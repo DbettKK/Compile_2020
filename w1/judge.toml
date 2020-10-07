@@ -3,5 +3,5 @@
 image = { source = "dockerfile", path = "." , tag = "test"}
 
 run = [
-  "java com.dbettkk.Test $input",
+  "java com.dbettkk.compile.Main $input",
 ]
